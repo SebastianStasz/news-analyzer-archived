@@ -1,0 +1,19 @@
+import pickle
+import functions as func
+
+models = ['ridge_model', 'random_forest_model', 'logistic_regression_model', 'kneighbors_model', 'gaussian_nb_model', 'decision_tree_model']
+sentences_number = 10
+classifier_model = pickle.load(open('models/en_' + 'ridge_model' + '.pkl', 'rb'))
+
+# Given text
+# input_text = 'US President Joe Biden has said he will respect a jury’s decision to find his son guilty of gun crimes, after a week-long trial that laid bare a tumultuous time for the family.  The 12-person jury found Hunter Biden, 54, guilty of lying about his drug use on a form while purchasing a handgun in 2018. He faces possible jail time following the verdict, which marked the first criminal prosecution of a sitting president’s child. His conviction on all three felony counts comes as President Biden campaigns for re-election in November, and less than two weeks after his election rival Donald Trump was himself convicted of a crime in New York. While President Biden did not attend the trial in Delaware, many family members including First Lady Jill Biden did so regularly. Hunter Biden’s wife, sister and uncle were all present at times to support him during proceedings. President Biden flew to Wilmington, Delaware, after the verdict where he greeted and hugged his son on the tarmac. “I am the president, but I am also a dad. Jill and I love our son, and we are so proud of the man he is today,” he said in a statement. Mr Biden added that he would “accept the outcome of this case and… continue to respect the judicial process as Hunter considers an appeal”. President Biden earlier ruled out pardoning his son, whose trial aired embarrassing details as prosecutors sought to show he was using crack cocaine at the time he bought the gun. Jurors heard from his ex-wife, Kathleen Buhle, and a former girlfriend, Zoe Kestan, who described frequent drug binges that took a toll on his friends and family. Text messages detailing his addiction and photographs, some showing a half-naked Hunter Biden, were also shown to the court. Guilty on all charges. Will Hunter Biden go to prison? Hunter Biden jurors say politics did not sway verdict What son s conviction means for President Biden The verdict on Tuesday prompted instant political reaction, including from Republicans in Congress who have spent years investigating Hunter Biden’s behaviour and business ties. James Comer, the Republican chair of the House oversight committee, said it marked a “step toward accountability”, but added that everyone involved in what he called the Bidens’ corrupt influence peddling schemes” should be investigated. A statement from the Trump campaign, meanwhile, said the trial had “been nothing more than a distraction from the real crimes of the Biden Crime Family”. The former president has often used that description of the family on the campaign trail, referring to allegations of improper conduct made against the president and his son by Republicans. Democrats in Congress accused their Republican colleagues of hypocrisy, and praised the US justice system. “Compare and contrast the difference in reaction between the Republicans and the Democrats, Maryland Democrat Jamie Raskin said in a hearing. Referring to Trumps criminal conviction, he said: The Republicans are attacking our entire system of justice and the rule of law because they don’t like the way one case came out, whereas the son of the president of the United States is prosecuted and I don’t hear a single Democrat crying foul.”'
+# text_summary, text_category = func.summarize_category(input_text, sentences_number, classifier_model)
+
+# Text from URL
+url = 'https://www.bbc.com/sport/football/live/cq55yzvjd7xt'
+text_from_url = func.fetch_data(url)
+text_summary, text_category = func.summarize_category(text_from_url, sentences_number, classifier_model)
+
+print('\n')
+print(f'Text category: {text_category}')
+print(f'Text summary: {text_summary}')
