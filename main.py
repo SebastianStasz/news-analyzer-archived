@@ -1,5 +1,6 @@
 import pickle
 import functions as func
+from substack_api import newsletter, user
 
 models = ['ridge_model', 'random_forest_model', 'logistic_regression_model', 'kneighbors_model', 'gaussian_nb_model', 'decision_tree_model']
 sentences_number = 10
@@ -10,10 +11,18 @@ classifier_model = pickle.load(open('models/en_' + 'ridge_model' + '.pkl', 'rb')
 # text_summary, text_category = func.summarize_category(input_text, sentences_number, classifier_model)
 
 # Text from URL
-url = 'https://www.bbc.com/sport/football/live/cq55yzvjd7xt'
-text_from_url = func.fetch_data(url)
-text_summary, text_category = func.summarize_category(text_from_url, sentences_number, classifier_model)
+# url = 'https://www.bbc.com/sport/football/live/cq55yzvjd7xt'
+# text_from_url = func.fetch_data(url)
+# text_summary, text_category = func.summarize_category(text_from_url, sentences_number, classifier_model)
 
-print('\n')
-print(f'Text category: {text_category}')
-print(f'Text summary: {text_summary}')
+# print('\n')
+# print(f'Text category: {text_category}')
+# print(f'Text summary: {text_summary}')
+
+## API for newsletters
+
+categories = newsletter.list_all_categories()
+# newsletter.get_newsletters_in_category(4, start_page=0, end_page=2)
+latest = newsletter.get_newsletter_post_metadata("platformer", start_offset=0, end_offset=30)
+print(categories)
+print(latest)
