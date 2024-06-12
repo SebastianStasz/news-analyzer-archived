@@ -13,4 +13,4 @@ def get_latest_articles():
                          'url': article['canonical_url']})
 
     with open('latest_articles.js', 'w', encoding='utf-8') as file:
-        file.write(json.dumps(articles, indent=4))
+        file.write(json.dumps(articles, indent=4, ensure_ascii=False))

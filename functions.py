@@ -11,6 +11,7 @@ from nltk.stem.isri import ISRIStemmer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+import requests
 
 # Kategorie tekstów
 categories = ['Economy & Business', 'Diverse News', 'Politic', 'Sport', 'Technology']
@@ -192,7 +193,12 @@ def summarize_category(input_text, statements, model_name):
 
 # Funkcja pobierania danych z URL:
 def fetch_data(url):
-    page = urlopen(url)
-    soup = BeautifulSoup(page)
+    try:
+        response = requests.get(url)
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching {url}: {e}")
+        return None
+
+    soup = BeautifulSoup(response.text, 'html.parser')
     fetched_text = ' '.join(map(lambda p: p.text, soup.find_all('p')))
     return fetched_text
