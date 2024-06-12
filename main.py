@@ -1,6 +1,6 @@
 import pickle
 import functions as func
-from substack_api import newsletter, user
+from articles_provider import get_latest_articles
 
 models = ['ridge_model', 'random_forest_model', 'logistic_regression_model', 'kneighbors_model', 'gaussian_nb_model', 'decision_tree_model']
 sentences_number = 10
@@ -19,10 +19,4 @@ classifier_model = pickle.load(open('models/en_' + 'ridge_model' + '.pkl', 'rb')
 # print(f'Text category: {text_category}')
 # print(f'Text summary: {text_summary}')
 
-## API for newsletters
-
-categories = newsletter.list_all_categories()
-# newsletter.get_newsletters_in_category(4, start_page=0, end_page=2)
-latest = newsletter.get_newsletter_post_metadata("platformer", start_offset=0, end_offset=30)
-print(categories)
-print(latest)
+get_latest_articles()
