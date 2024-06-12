@@ -196,7 +196,7 @@ def fetch_data(url):
     try:
         response = requests.get(url)
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching {url}: {e}")
+        print(f"Error fetching {url}: {e} \n")
         return None
 
     soup = BeautifulSoup(response.text, 'html.parser')

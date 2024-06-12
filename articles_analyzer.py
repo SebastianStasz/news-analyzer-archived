@@ -12,13 +12,14 @@ def analyze_articles(file_name, output_file_name, sentences_number, classifier_m
 
         for article in articles:
             text_from_url = func.fetch_data(article['url'])
-            if text_from_url != None:
-                text_summary, text_category = func.summarize_category(text_from_url, sentences_number, classifier_model)
-            
-                result.append({'title': article['title'],
-                               'summary': text_summary,
-                               'category': text_category,
-                               'url': article['url']})
+            if text_from_url is not None:
+                if len(text_from_url) > 10:
+                    text_summary, text_category = func.summarize_category(text_from_url, sentences_number, classifier_model)
+                
+                    result.append({'title': article['title'],
+                                    'summary': text_summary,
+                                    'category': text_category,
+                                    'url': article['url']})
                 
     with open(output_file_name, 'w', encoding='utf-8') as file:
         file.write(json.dumps(result, indent=4, ensure_ascii=False))
