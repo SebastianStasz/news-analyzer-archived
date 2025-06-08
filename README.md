@@ -1,4 +1,4 @@
-# news-analyzer-archived
+# News analyzer [Archived]
 
 **news-analyzer** is a Python-based project designed for news article analysis. It provides functionality to fetch, analyze, and summarize articles from various sources. The project employs machine learning models and natural language processing (NLP) techniques to categorize articles and generate summaries. The system uses multiple modules to:
 1. Fetch the latest news articles from an API.
